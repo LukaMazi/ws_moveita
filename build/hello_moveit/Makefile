@@ -210,6 +210,43 @@ hello_moveit/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello_moveit.dir/build.make CMakeFiles/hello_moveit.dir/build
 .PHONY : hello_moveit/fast
 
+#=============================================================================
+# Target rules for targets named collision_detection
+
+# Build rule for target.
+collision_detection: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 collision_detection
+.PHONY : collision_detection
+
+# fast build rule for target.
+collision_detection/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/collision_detection.dir/build.make CMakeFiles/collision_detection.dir/build
+.PHONY : collision_detection/fast
+
+src/collision_detection.o: src/collision_detection.cpp.o
+.PHONY : src/collision_detection.o
+
+# target to build an object file
+src/collision_detection.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/collision_detection.dir/build.make CMakeFiles/collision_detection.dir/src/collision_detection.cpp.o
+.PHONY : src/collision_detection.cpp.o
+
+src/collision_detection.i: src/collision_detection.cpp.i
+.PHONY : src/collision_detection.i
+
+# target to preprocess a source file
+src/collision_detection.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/collision_detection.dir/build.make CMakeFiles/collision_detection.dir/src/collision_detection.cpp.i
+.PHONY : src/collision_detection.cpp.i
+
+src/collision_detection.s: src/collision_detection.cpp.s
+.PHONY : src/collision_detection.s
+
+# target to generate assembly for a file
+src/collision_detection.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/collision_detection.dir/build.make CMakeFiles/collision_detection.dir/src/collision_detection.cpp.s
+.PHONY : src/collision_detection.cpp.s
+
 src/hello_moveit.o: src/hello_moveit.cpp.o
 .PHONY : src/hello_moveit.o
 
@@ -249,7 +286,11 @@ help:
 	@echo "... test"
 	@echo "... hello_moveit_uninstall"
 	@echo "... uninstall"
+	@echo "... collision_detection"
 	@echo "... hello_moveit"
+	@echo "... src/collision_detection.o"
+	@echo "... src/collision_detection.i"
+	@echo "... src/collision_detection.s"
 	@echo "... src/hello_moveit.o"
 	@echo "... src/hello_moveit.i"
 	@echo "... src/hello_moveit.s"

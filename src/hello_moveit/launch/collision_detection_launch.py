@@ -34,7 +34,7 @@ def generate_launch_description():
     return LaunchDescription([
         Node(
             package='hello_moveit',
-            executable='collison',  # MODIFIED: Using the new executable
+            executable='collision_detection',  # MODIFIED: Using the new executable
             output='screen',
             parameters=[
                 robot_description,

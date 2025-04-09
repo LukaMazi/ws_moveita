@@ -1327,4 +1327,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/uninstall.dir/DependInfo.cmake"
   "CMakeFiles/hello_moveit_uninstall.dir/DependInfo.cmake"
   "CMakeFiles/hello_moveit.dir/DependInfo.cmake"
+  "CMakeFiles/collision_detection.dir/DependInfo.cmake"
   )
