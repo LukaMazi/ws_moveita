@@ -10,6 +10,8 @@ find_package(ament_cmake REQUIRED)
 find_package(moveit_ros_planning_interface REQUIRED)
 find_package(rclcpp REQUIRED)
 
+find_package(moveit_visual_tools REQUIRED)
+
 # Add include directories for MoveIt
 include_directories(${moveit_ros_planning_interface_INCLUDE_DIRS})
 
@@ -24,6 +26,7 @@ ament_target_dependencies(
   collision_detection
   rclcpp
   moveit_ros_planning_interface
+  moveit_visual_tools
   # Removed hello_moveit (package name shouldn't be here)
 )
 

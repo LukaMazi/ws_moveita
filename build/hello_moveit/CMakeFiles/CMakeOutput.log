@@ -992,3 +992,99 @@ int main(void)
   return 0;
 }
 
+Determining if the function XOpenDisplay exists in the /usr/lib/x86_64-linux-gnu/libX11.so;/usr/lib/x86_64-linux-gnu/libXext.so passed with the following output:
+Change Dir: /home/lampa66/ws_moveita/build/hello_moveit/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_b1558/fast && gmake[1]: Entering directory '/home/lampa66/ws_moveita/build/hello_moveit/CMakeFiles/CMakeTmp'
+/usr/bin/gmake  -f CMakeFiles/cmTC_b1558.dir/build.make CMakeFiles/cmTC_b1558.dir/build
+gmake[2]: Entering directory '/home/lampa66/ws_moveita/build/hello_moveit/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_b1558.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=XOpenDisplay -o CMakeFiles/cmTC_b1558.dir/CheckFunctionExists.c.o -c /usr/share/cmake-3.22/Modules/CheckFunctionExists.c
+Linking C executable cmTC_b1558
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b1558.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=XOpenDisplay CMakeFiles/cmTC_b1558.dir/CheckFunctionExists.c.o -o cmTC_b1558  /usr/lib/x86_64-linux-gnu/libX11.so /usr/lib/x86_64-linux-gnu/libXext.so 
+gmake[2]: Leaving directory '/home/lampa66/ws_moveita/build/hello_moveit/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory '/home/lampa66/ws_moveita/build/hello_moveit/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function gethostbyname exists passed with the following output:
+Change Dir: /home/lampa66/ws_moveita/build/hello_moveit/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_36e3c/fast && gmake[1]: Entering directory '/home/lampa66/ws_moveita/build/hello_moveit/CMakeFiles/CMakeTmp'
+/usr/bin/gmake  -f CMakeFiles/cmTC_36e3c.dir/build.make CMakeFiles/cmTC_36e3c.dir/build
+gmake[2]: Entering directory '/home/lampa66/ws_moveita/build/hello_moveit/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_36e3c.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=gethostbyname -o CMakeFiles/cmTC_36e3c.dir/CheckFunctionExists.c.o -c /usr/share/cmake-3.22/Modules/CheckFunctionExists.c
+Linking C executable cmTC_36e3c
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_36e3c.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=gethostbyname CMakeFiles/cmTC_36e3c.dir/CheckFunctionExists.c.o -o cmTC_36e3c 
+gmake[2]: Leaving directory '/home/lampa66/ws_moveita/build/hello_moveit/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory '/home/lampa66/ws_moveita/build/hello_moveit/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function connect exists passed with the following output:
+Change Dir: /home/lampa66/ws_moveita/build/hello_moveit/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_7b7f3/fast && gmake[1]: Entering directory '/home/lampa66/ws_moveita/build/hello_moveit/CMakeFiles/CMakeTmp'
+/usr/bin/gmake  -f CMakeFiles/cmTC_7b7f3.dir/build.make CMakeFiles/cmTC_7b7f3.dir/build
+gmake[2]: Entering directory '/home/lampa66/ws_moveita/build/hello_moveit/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_7b7f3.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=connect -o CMakeFiles/cmTC_7b7f3.dir/CheckFunctionExists.c.o -c /usr/share/cmake-3.22/Modules/CheckFunctionExists.c
+Linking C executable cmTC_7b7f3
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7b7f3.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=connect CMakeFiles/cmTC_7b7f3.dir/CheckFunctionExists.c.o -o cmTC_7b7f3 
+gmake[2]: Leaving directory '/home/lampa66/ws_moveita/build/hello_moveit/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory '/home/lampa66/ws_moveita/build/hello_moveit/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function remove exists passed with the following output:
+Change Dir: /home/lampa66/ws_moveita/build/hello_moveit/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_2d340/fast && gmake[1]: Entering directory '/home/lampa66/ws_moveita/build/hello_moveit/CMakeFiles/CMakeTmp'
+/usr/bin/gmake  -f CMakeFiles/cmTC_2d340.dir/build.make CMakeFiles/cmTC_2d340.dir/build
+gmake[2]: Entering directory '/home/lampa66/ws_moveita/build/hello_moveit/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_2d340.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=remove -o CMakeFiles/cmTC_2d340.dir/CheckFunctionExists.c.o -c /usr/share/cmake-3.22/Modules/CheckFunctionExists.c
+Linking C executable cmTC_2d340
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2d340.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=remove CMakeFiles/cmTC_2d340.dir/CheckFunctionExists.c.o -o cmTC_2d340 
+gmake[2]: Leaving directory '/home/lampa66/ws_moveita/build/hello_moveit/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory '/home/lampa66/ws_moveita/build/hello_moveit/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function shmat exists passed with the following output:
+Change Dir: /home/lampa66/ws_moveita/build/hello_moveit/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_928d5/fast && gmake[1]: Entering directory '/home/lampa66/ws_moveita/build/hello_moveit/CMakeFiles/CMakeTmp'
+/usr/bin/gmake  -f CMakeFiles/cmTC_928d5.dir/build.make CMakeFiles/cmTC_928d5.dir/build
+gmake[2]: Entering directory '/home/lampa66/ws_moveita/build/hello_moveit/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_928d5.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=shmat -o CMakeFiles/cmTC_928d5.dir/CheckFunctionExists.c.o -c /usr/share/cmake-3.22/Modules/CheckFunctionExists.c
+Linking C executable cmTC_928d5
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_928d5.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=shmat CMakeFiles/cmTC_928d5.dir/CheckFunctionExists.c.o -o cmTC_928d5 
+gmake[2]: Leaving directory '/home/lampa66/ws_moveita/build/hello_moveit/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory '/home/lampa66/ws_moveita/build/hello_moveit/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function IceConnectionNumber exists in the ICE passed with the following output:
+Change Dir: /home/lampa66/ws_moveita/build/hello_moveit/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_1bc9e/fast && gmake[1]: Entering directory '/home/lampa66/ws_moveita/build/hello_moveit/CMakeFiles/CMakeTmp'
+/usr/bin/gmake  -f CMakeFiles/cmTC_1bc9e.dir/build.make CMakeFiles/cmTC_1bc9e.dir/build
+gmake[2]: Entering directory '/home/lampa66/ws_moveita/build/hello_moveit/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_1bc9e.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=IceConnectionNumber -o CMakeFiles/cmTC_1bc9e.dir/CheckFunctionExists.c.o -c /usr/share/cmake-3.22/Modules/CheckFunctionExists.c
+Linking C executable cmTC_1bc9e
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1bc9e.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=IceConnectionNumber CMakeFiles/cmTC_1bc9e.dir/CheckFunctionExists.c.o -o cmTC_1bc9e  -lICE 
+gmake[2]: Leaving directory '/home/lampa66/ws_moveita/build/hello_moveit/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory '/home/lampa66/ws_moveita/build/hello_moveit/CMakeFiles/CMakeTmp'
+
+
+
