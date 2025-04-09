@@ -1,5 +1,5 @@
-## Terminal 1
-
+## Terminal 1 jojoo fjhdsajdqs
+to je spreme,mba
 ```zsh
 cd ~/fr3_ws
 source install/setup.bash
