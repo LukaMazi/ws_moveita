@@ -1,0 +1,26 @@
+[0.006s] Invoking command in '/home/lampa66/ws_moveita/build/hello_moveit': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/lampa66/ws_moveita/build/hello_moveit -- -j12 -l12
+[0.035s] [35m[1mConsolidate compiler generated dependencies of target hello_moveit[0m
+[0.048s] [ 50%] [32mBuilding CXX object CMakeFiles/hello_moveit.dir/src/hello_moveit.cpp.o[0m
+[5.030s] [100%] [32m[1mLinking CXX executable hello_moveit[0m
+[5.229s] [100%] Built target hello_moveit
+[5.236s] Invoked command in '/home/lampa66/ws_moveita/build/hello_moveit' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/lampa66/ws_moveita/build/hello_moveit -- -j12 -l12
+[5.242s] Invoking command in '/home/lampa66/ws_moveita/build/hello_moveit': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/lampa66/ws_moveita/build/hello_moveit
+[5.246s] -- Install configuration: ""
+[5.246s] -- Installing: /home/lampa66/ws_moveita/install/hello_moveit/lib/hello_moveit/hello_moveit
+[5.247s] -- Set runtime path of "/home/lampa66/ws_moveita/install/hello_moveit/lib/hello_moveit/hello_moveit" to ""
+[5.247s] -- Up-to-date: /home/lampa66/ws_moveita/install/hello_moveit/share/ament_index/resource_index/package_run_dependencies/hello_moveit
+[5.247s] -- Up-to-date: /home/lampa66/ws_moveita/install/hello_moveit/share/ament_index/resource_index/parent_prefix_path/hello_moveit
+[5.247s] -- Up-to-date: /home/lampa66/ws_moveita/install/hello_moveit/share/hello_moveit/environment/ament_prefix_path.sh
+[5.247s] -- Up-to-date: /home/lampa66/ws_moveita/install/hello_moveit/share/hello_moveit/environment/ament_prefix_path.dsv
+[5.247s] -- Up-to-date: /home/lampa66/ws_moveita/install/hello_moveit/share/hello_moveit/environment/path.sh
+[5.247s] -- Up-to-date: /home/lampa66/ws_moveita/install/hello_moveit/share/hello_moveit/environment/path.dsv
+[5.247s] -- Up-to-date: /home/lampa66/ws_moveita/install/hello_moveit/share/hello_moveit/local_setup.bash
+[5.247s] -- Up-to-date: /home/lampa66/ws_moveita/install/hello_moveit/share/hello_moveit/local_setup.sh
+[5.247s] -- Up-to-date: /home/lampa66/ws_moveita/install/hello_moveit/share/hello_moveit/local_setup.zsh
+[5.247s] -- Up-to-date: /home/lampa66/ws_moveita/install/hello_moveit/share/hello_moveit/local_setup.dsv
+[5.247s] -- Installing: /home/lampa66/ws_moveita/install/hello_moveit/share/hello_moveit/package.dsv
+[5.247s] -- Up-to-date: /home/lampa66/ws_moveita/install/hello_moveit/share/ament_index/resource_index/packages/hello_moveit
+[5.247s] -- Up-to-date: /home/lampa66/ws_moveita/install/hello_moveit/share/hello_moveit/cmake/hello_moveitConfig.cmake
+[5.247s] -- Up-to-date: /home/lampa66/ws_moveita/install/hello_moveit/share/hello_moveit/cmake/hello_moveitConfig-version.cmake
+[5.247s] -- Up-to-date: /home/lampa66/ws_moveita/install/hello_moveit/share/hello_moveit/package.xml
+[5.248s] Invoked command in '/home/lampa66/ws_moveita/build/hello_moveit' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/lampa66/ws_moveita/build/hello_moveit
