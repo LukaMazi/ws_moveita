@@ -198,19 +198,6 @@ hello_moveit_uninstall/fast:
 .PHONY : hello_moveit_uninstall/fast
 
 #=============================================================================
-# Target rules for targets named hello_moveit
-
-# Build rule for target.
-hello_moveit: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 hello_moveit
-.PHONY : hello_moveit
-
-# fast build rule for target.
-hello_moveit/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello_moveit.dir/build.make CMakeFiles/hello_moveit.dir/build
-.PHONY : hello_moveit/fast
-
-#=============================================================================
 # Target rules for targets named collision_detection
 
 # Build rule for target.
@@ -247,30 +234,6 @@ src/collision_detection.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/collision_detection.dir/build.make CMakeFiles/collision_detection.dir/src/collision_detection.cpp.s
 .PHONY : src/collision_detection.cpp.s
 
-src/hello_moveit.o: src/hello_moveit.cpp.o
-.PHONY : src/hello_moveit.o
-
-# target to build an object file
-src/hello_moveit.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello_moveit.dir/build.make CMakeFiles/hello_moveit.dir/src/hello_moveit.cpp.o
-.PHONY : src/hello_moveit.cpp.o
-
-src/hello_moveit.i: src/hello_moveit.cpp.i
-.PHONY : src/hello_moveit.i
-
-# target to preprocess a source file
-src/hello_moveit.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello_moveit.dir/build.make CMakeFiles/hello_moveit.dir/src/hello_moveit.cpp.i
-.PHONY : src/hello_moveit.cpp.i
-
-src/hello_moveit.s: src/hello_moveit.cpp.s
-.PHONY : src/hello_moveit.s
-
-# target to generate assembly for a file
-src/hello_moveit.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello_moveit.dir/build.make CMakeFiles/hello_moveit.dir/src/hello_moveit.cpp.s
-.PHONY : src/hello_moveit.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -287,13 +250,9 @@ help:
 	@echo "... hello_moveit_uninstall"
 	@echo "... uninstall"
 	@echo "... collision_detection"
-	@echo "... hello_moveit"
 	@echo "... src/collision_detection.o"
 	@echo "... src/collision_detection.i"
 	@echo "... src/collision_detection.s"
-	@echo "... src/hello_moveit.o"
-	@echo "... src/hello_moveit.i"
-	@echo "... src/hello_moveit.s"
 .PHONY : help
 
 

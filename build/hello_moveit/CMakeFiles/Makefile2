@@ -63,7 +63,6 @@ CMAKE_BINARY_DIR = /home/lampa66/ws_moveita/build/hello_moveit
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/hello_moveit.dir/all
 all: CMakeFiles/collision_detection.dir/all
 .PHONY : all
 
@@ -74,7 +73,6 @@ preinstall:
 # The main recursive "clean" target.
 clean: CMakeFiles/uninstall.dir/clean
 clean: CMakeFiles/hello_moveit_uninstall.dir/clean
-clean: CMakeFiles/hello_moveit.dir/clean
 clean: CMakeFiles/collision_detection.dir/clean
 .PHONY : clean
 
@@ -129,32 +127,6 @@ hello_moveit_uninstall: CMakeFiles/hello_moveit_uninstall.dir/rule
 CMakeFiles/hello_moveit_uninstall.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello_moveit_uninstall.dir/build.make CMakeFiles/hello_moveit_uninstall.dir/clean
 .PHONY : CMakeFiles/hello_moveit_uninstall.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/hello_moveit.dir
-
-# All Build rule for target.
-CMakeFiles/hello_moveit.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello_moveit.dir/build.make CMakeFiles/hello_moveit.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello_moveit.dir/build.make CMakeFiles/hello_moveit.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lampa66/ws_moveita/build/hello_moveit/CMakeFiles --progress-num=3,4 "Built target hello_moveit"
-.PHONY : CMakeFiles/hello_moveit.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/hello_moveit.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/lampa66/ws_moveita/build/hello_moveit/CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/hello_moveit.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/lampa66/ws_moveita/build/hello_moveit/CMakeFiles 0
-.PHONY : CMakeFiles/hello_moveit.dir/rule
-
-# Convenience name for target.
-hello_moveit: CMakeFiles/hello_moveit.dir/rule
-.PHONY : hello_moveit
-
-# clean rule for target.
-CMakeFiles/hello_moveit.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello_moveit.dir/build.make CMakeFiles/hello_moveit.dir/clean
-.PHONY : CMakeFiles/hello_moveit.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/collision_detection.dir

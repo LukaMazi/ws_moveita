@@ -1,4 +1,5 @@
-/home/lampa66/ws_moveita/install/hello_moveit/lib/hello_moveit/hello_moveit
+/home/lampa66/ws_moveita/install/hello_moveit/lib/hello_moveit/collision_detection
+/home/lampa66/ws_moveita/install/hello_moveit/share/hello_moveit/launch/collision_detection_launch.py
 /home/lampa66/ws_moveita/install/hello_moveit/share/hello_moveit/launch/hello_moveit.launch.py
 /home/lampa66/ws_moveita/install/hello_moveit/share/ament_index/resource_index/package_run_dependencies/hello_moveit
 /home/lampa66/ws_moveita/install/hello_moveit/share/ament_index/resource_index/parent_prefix_path/hello_moveit
