@@ -1,4 +1,4 @@
-## Terminal 1 jojoo fjhdsajdqs
+## Terminal 1 jojoo fjhdsajdqs  gfdgfg
 to je spreme,mba
 ```zsh
 cd ~/fr3_ws
