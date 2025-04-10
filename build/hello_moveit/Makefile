@@ -210,6 +210,32 @@ collision_detection/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/collision_detection.dir/build.make CMakeFiles/collision_detection.dir/build
 .PHONY : collision_detection/fast
 
+#=============================================================================
+# Target rules for targets named hello_moveit_node
+
+# Build rule for target.
+hello_moveit_node: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 hello_moveit_node
+.PHONY : hello_moveit_node
+
+# fast build rule for target.
+hello_moveit_node/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello_moveit_node.dir/build.make CMakeFiles/hello_moveit_node.dir/build
+.PHONY : hello_moveit_node/fast
+
+#=============================================================================
+# Target rules for targets named mojmoj_node
+
+# Build rule for target.
+mojmoj_node: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mojmoj_node
+.PHONY : mojmoj_node
+
+# fast build rule for target.
+mojmoj_node/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mojmoj_node.dir/build.make CMakeFiles/mojmoj_node.dir/build
+.PHONY : mojmoj_node/fast
+
 src/collision_detection.o: src/collision_detection.cpp.o
 .PHONY : src/collision_detection.o
 
@@ -234,6 +260,54 @@ src/collision_detection.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/collision_detection.dir/build.make CMakeFiles/collision_detection.dir/src/collision_detection.cpp.s
 .PHONY : src/collision_detection.cpp.s
 
+src/hello_moveit.o: src/hello_moveit.cpp.o
+.PHONY : src/hello_moveit.o
+
+# target to build an object file
+src/hello_moveit.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello_moveit_node.dir/build.make CMakeFiles/hello_moveit_node.dir/src/hello_moveit.cpp.o
+.PHONY : src/hello_moveit.cpp.o
+
+src/hello_moveit.i: src/hello_moveit.cpp.i
+.PHONY : src/hello_moveit.i
+
+# target to preprocess a source file
+src/hello_moveit.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello_moveit_node.dir/build.make CMakeFiles/hello_moveit_node.dir/src/hello_moveit.cpp.i
+.PHONY : src/hello_moveit.cpp.i
+
+src/hello_moveit.s: src/hello_moveit.cpp.s
+.PHONY : src/hello_moveit.s
+
+# target to generate assembly for a file
+src/hello_moveit.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello_moveit_node.dir/build.make CMakeFiles/hello_moveit_node.dir/src/hello_moveit.cpp.s
+.PHONY : src/hello_moveit.cpp.s
+
+src/mojmoj.o: src/mojmoj.cpp.o
+.PHONY : src/mojmoj.o
+
+# target to build an object file
+src/mojmoj.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mojmoj_node.dir/build.make CMakeFiles/mojmoj_node.dir/src/mojmoj.cpp.o
+.PHONY : src/mojmoj.cpp.o
+
+src/mojmoj.i: src/mojmoj.cpp.i
+.PHONY : src/mojmoj.i
+
+# target to preprocess a source file
+src/mojmoj.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mojmoj_node.dir/build.make CMakeFiles/mojmoj_node.dir/src/mojmoj.cpp.i
+.PHONY : src/mojmoj.cpp.i
+
+src/mojmoj.s: src/mojmoj.cpp.s
+.PHONY : src/mojmoj.s
+
+# target to generate assembly for a file
+src/mojmoj.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mojmoj_node.dir/build.make CMakeFiles/mojmoj_node.dir/src/mojmoj.cpp.s
+.PHONY : src/mojmoj.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -250,9 +324,17 @@ help:
 	@echo "... hello_moveit_uninstall"
 	@echo "... uninstall"
 	@echo "... collision_detection"
+	@echo "... hello_moveit_node"
+	@echo "... mojmoj_node"
 	@echo "... src/collision_detection.o"
 	@echo "... src/collision_detection.i"
 	@echo "... src/collision_detection.s"
+	@echo "... src/hello_moveit.o"
+	@echo "... src/hello_moveit.i"
+	@echo "... src/hello_moveit.s"
+	@echo "... src/mojmoj.o"
+	@echo "... src/mojmoj.i"
+	@echo "... src/mojmoj.s"
 .PHONY : help
 
 

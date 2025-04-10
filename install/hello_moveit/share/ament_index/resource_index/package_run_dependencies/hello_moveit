@@ -1,1 +1,1 @@
-moveit_ros_planning_interface;rclcpp;moveit_visual_tools;launch;launch_ros;xacro;ament_index_python;python3-yaml;ament_lint_auto;ament_lint_common
+moveit_ros_planning_interface;rclcpp;moveit_visual_tools;roscpp;moveit_core;launch;launch_ros;xacro;ament_index_python;python3-yaml;ament_lint_auto;ament_lint_common
