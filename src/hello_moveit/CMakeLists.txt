@@ -81,8 +81,6 @@ ament_target_dependencies(
  moveit_ros_planning_interface
  moveit_visual_tools
 )
-
-
 # Install all targets
 install(TARGETS
  collision_detection

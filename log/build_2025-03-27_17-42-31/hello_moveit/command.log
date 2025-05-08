@@ -1,4 +1,0 @@
-Invoking command in '/home/lampa66/ws_moveita/build/hello_moveit': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/lampa66/ws_moveita/src/hello_moveit -DCMAKE_INSTALL_PREFIX=/home/lampa66/ws_moveita/install/hello_moveit
-Invoked command in '/home/lampa66/ws_moveita/build/hello_moveit' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/lampa66/ws_moveita/src/hello_moveit -DCMAKE_INSTALL_PREFIX=/home/lampa66/ws_moveita/install/hello_moveit
-Invoking command in '/home/lampa66/ws_moveita/build/hello_moveit': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/lampa66/ws_moveita/build/hello_moveit -- -j12 -l12
-Invoked command in '/home/lampa66/ws_moveita/build/hello_moveit' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/lampa66/ws_moveita/build/hello_moveit -- -j12 -l12

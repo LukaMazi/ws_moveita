@@ -1,0 +1,7 @@
+force_position_interface:
+  ros__parameters:
+    # Parameters for the force_position_interface node
+    force_kp: 0.001   # Proportional gain for force control
+    force_ki: 0.0001  # Integral gain for force control
+    force_kd: 0.0     # Derivative gain for force control
+    # Note: force_axis and force_target are passed directly as parameters in the launch file
