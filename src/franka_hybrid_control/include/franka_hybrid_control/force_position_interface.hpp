@@ -6,6 +6,7 @@
 #include <std_msgs/msg/float64.hpp>
 #include <geometry_msgs/msg/pose_stamped.hpp>
 #include "franka_hybrid_control/franka_hybrid_controller.hpp"
+#include "std_msgs/msg/float32.hpp"
 
 namespace franka_hybrid_control
 {
@@ -32,7 +33,7 @@ public:
 private:
   // Callbacks
   void force_axis_callback(const std_msgs::msg::Int32::SharedPtr msg);
-  void force_target_callback(const std_msgs::msg::Float64::SharedPtr msg);
+  void force_target_callback(const std_msgs::msg::Float32::SharedPtr msg);
   void pose_target_callback(const geometry_msgs::msg::PoseStamped::SharedPtr msg);
   
   // Execute hybrid control
@@ -43,7 +44,7 @@ private:
   
   // Subscribers
   rclcpp::Subscription<std_msgs::msg::Int32>::SharedPtr force_axis_sub_;
-  rclcpp::Subscription<std_msgs::msg::Float64>::SharedPtr force_target_sub_;
+  rclcpp::Subscription<std_msgs::msg::Float32>::SharedPtr force_target_sub_;
   rclcpp::Subscription<geometry_msgs::msg::PoseStamped>::SharedPtr pose_target_sub_;
   
   // Control parameters

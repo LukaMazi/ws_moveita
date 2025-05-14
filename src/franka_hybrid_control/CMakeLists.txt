@@ -72,10 +72,20 @@ target_link_libraries(force_position_node
   franka_hybrid_controller
 )
 
+# Declare a C++ executable
+add_executable(custom_publisher src/custom_publisher.cpp)
+
+ament_target_dependencies(custom_publisher
+  rclcpp
+  std_msgs
+  geometry_msgs
+)
+
 # Install targets
 install(TARGETS
   franka_hybrid_controller
   force_position_node
+  custom_publisher
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION lib/${PROJECT_NAME}

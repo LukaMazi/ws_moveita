@@ -1,116 +1,187 @@
 import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
+from launch.actions import DeclareLaunchArgument, ExecuteProcess, Shutdown
+from launch.substitutions import Command, FindExecutable, LaunchConfiguration
 from launch_ros.actions import Node
-from launch.actions import DeclareLaunchArgument
-from launch.substitutions import LaunchConfiguration
-from launch.actions import IncludeLaunchDescription
-from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.actions import OpaqueFunction
+from launch_ros.parameter_descriptions import ParameterValue
+import yaml
 
-def launch_setup(context, *args, **kwargs):
-    # Get the package directory (this package)
-    pkg_dir = get_package_share_directory('franka_hybrid_control')
+def load_yaml(package_name, file_path):
+    package_path = get_package_share_directory(package_name)
+    absolute_path = os.path.join(package_path, file_path)
+    with open(absolute_path, 'r') as file:
+        return yaml.safe_load(file)
 
-    # Get the robot_ip from the launch argument
-    robot_ip = LaunchConfiguration('robot_ip').perform(context) # Use perform to get the string value
+def generate_launch_description():
+    robot_ip = LaunchConfiguration('robot_ip')
+    use_fake_hardware = LaunchConfiguration('use_fake_hardware', default='false')
+    fake_sensor_commands = LaunchConfiguration('fake_sensor_commands', default='false')
 
-    # Get the path to the main Franka MoveIt launch file
-    # Confirmed package name is 'franka_fr3_moveit_config' and file is 'moveit.launch.py'
-    try:
-        franka_moveit_config_share = get_package_share_directory('franka_fr3_moveit_config') # Corrected package name
-        moveit_launch_file = os.path.join(franka_moveit_config_share, 'launch', 'moveit.launch.py') # <--- Confirmed filename
+    franka_config = get_package_share_directory('franka_fr3_moveit_config')
+    hybrid_config = get_package_share_directory('franka_hybrid_control')
+    urdf_xacro = os.path.join(franka_config, 'srdf', 'fr3_no_hand.urdf.xacro')
+    srdf_xacro = os.path.join(franka_config, 'srdf', 'fr3_arm.srdf.xacro')
+    rviz_config = os.path.join(franka_config, 'rviz', 'moveit.rviz')
+    controllers_yaml_path = os.path.join(franka_config, 'config', 'fr3_ros_controllers.yaml')
 
-        if not os.path.exists(moveit_launch_file):
-             print("!!! Error: Confirmed MoveIt launch file not found at the expected location. !!!")
-             print(f"!!! Looked for: {moveit_launch_file} !!!")
-             print("!!! Please ensure 'franka_fr3_moveit_config' is installed and sourced correctly. !!!")
-             return []
+    # Robot description
+    robot_description = {
+        'robot_description': ParameterValue(
+            Command([
+                FindExecutable(name='xacro'), ' ', urdf_xacro,
+                ' hand:=false',
+                ' robot_ip:=', robot_ip,
+                ' use_fake_hardware:=', use_fake_hardware,
+                ' fake_sensor_commands:=', fake_sensor_commands,
+                ' ros2_control:=true'
+            ]),
+            value_type=str
+        )
+    }
+    robot_description_semantic = {
+        'robot_description_semantic': ParameterValue(
+            Command([
+                FindExecutable(name='xacro'), ' ', srdf_xacro, ' hand:=false'
+            ]),
+            value_type=str
+        )
+    }
 
-        print(f"--- Including main MoveIt launch file: {moveit_launch_file} ---") # Debug print
+    # Load YAMLs as dicts
+    kinematics_yaml = load_yaml('franka_fr3_moveit_config', 'config/kinematics.yaml')
+    ompl_yaml = load_yaml('franka_fr3_moveit_config', 'config/ompl_planning.yaml')
+    moveit_simple_controllers_yaml = load_yaml('franka_fr3_moveit_config', 'config/fr3_controllers.yaml')
+    force_params_yaml = load_yaml('franka_hybrid_control', 'config/force_control_params.yaml')
 
-    except Exception as e:
-        print(f"!!! Error finding franka_fr3_moveit_config package share directory: {e} !!!")
-        print("!!! Please ensure 'franka_fr3_moveit_config' is installed and sourced. !!!")
-        return [] # Return empty list if dependency not found
+    # OMPL planning pipeline config
+    ompl_planning_pipeline_config = {
+        'move_group': {
+            'planning_plugin': 'ompl_interface/OMPLPlanner',
+            'request_adapters': 'default_planner_request_adapters/AddTimeOptimalParameterization '
+                                'default_planner_request_adapters/ResolveConstraintFrames '
+                                'default_planner_request_adapters/FixWorkspaceBounds '
+                                'default_planner_request_adapters/FixStartStateBounds '
+                                'default_planner_request_adapters/FixStartStateCollision '
+                                'default_planner_request_adapters/FixStartStatePathConstraints',
+            'start_state_max_bounds_error': 0.1,
+        }
+    }
+    ompl_planning_pipeline_config['move_group'].update(ompl_yaml)
 
-    # Declare launch arguments (already present, but needed to pass them around)
-    # These arguments are used both at the top level and passed as parameters
-    force_axis = LaunchConfiguration('force_axis')
-    force_target = LaunchConfiguration('force_target')
+    # MoveIt controller manager config
+    moveit_controllers = {
+        'moveit_simple_controller_manager': moveit_simple_controllers_yaml,
+        'moveit_controller_manager': 'moveit_simple_controller_manager/MoveItSimpleControllerManager',
+    }
 
-    # Use LaunchConfiguration to access the values of the arguments for the node parameters
-    force_axis_value = LaunchConfiguration('force_axis')
-    force_target_value = LaunchConfiguration('force_target')
+    # Trajectory execution config
+    trajectory_execution = {
+        'moveit_manage_controllers': True,
+        'trajectory_execution.allowed_execution_duration_scaling': 1.2,
+        'trajectory_execution.allowed_goal_duration_margin': 0.5,
+        'trajectory_execution.allowed_start_tolerance': 0.01,
+    }
 
-    # Include the main Franka MoveIt launch file
-    # This will start the robot driver, state publishers, controllers, and MoveIt nodes
-    franka_moveit_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource([moveit_launch_file]),
-        # Pass arguments required by the included launch file
-        launch_arguments=[
-            ('robot_ip', robot_ip), # Pass the robot_ip argument
-            # Add other arguments required by the included launch file here, if any
-            # ('use_sim_time', 'false'), # Example if you need to pass sim time
-            # Check franka_fr3_moveit_config/launch/moveit.launch.py for required arguments
-        ]
+    # Planning scene monitor config
+    planning_scene_monitor_parameters = {
+        'publish_planning_scene': True,
+        'publish_geometry_updates': True,
+        'publish_state_updates': True,
+        'publish_transforms_updates': True,
+    }
+
+    # Nodes
+    robot_state_publisher = Node(
+        package='robot_state_publisher',
+        executable='robot_state_publisher',
+        name='robot_state_publisher',
+        output='screen',
+        parameters=[robot_description],
     )
 
-    # Force position interface node
-    # This node will receive force_axis and force_target as parameters
+    ros2_control_node = Node(
+        package='controller_manager',
+        executable='ros2_control_node',
+        parameters=[robot_description, controllers_yaml_path],
+        output='screen',
+        emulate_tty=True,
+        on_exit=Shutdown(),
+    )
+
+    # Spawners for controllers (use ExecuteProcess for reliability)
+    load_controllers = []
+    for controller in ['fr3_arm_controller', 'joint_state_broadcaster']:
+        load_controllers += [
+            ExecuteProcess(
+                cmd=['ros2 run controller_manager spawner {}'.format(controller)],
+                shell=True,
+                output='screen',
+            )
+        ]
+
+    # MoveIt move_group node
+    move_group_node = Node(
+        package='moveit_ros_move_group',
+        executable='move_group',
+        output='screen',
+        parameters=[
+            robot_description,
+            robot_description_semantic,
+            kinematics_yaml,
+            ompl_planning_pipeline_config,
+            trajectory_execution,
+            moveit_controllers,
+            planning_scene_monitor_parameters,
+        ],
+    )
+
+    # RViz
+    rviz_node = Node(
+        package='rviz2',
+        executable='rviz2',
+        name='rviz2',
+        output='screen',
+        arguments=['-d', rviz_config],
+        parameters=[
+            robot_description,
+            robot_description_semantic,
+            ompl_planning_pipeline_config,
+            kinematics_yaml,
+        ],
+    )
+
+    # Your custom force position node
     force_position_node = Node(
         package='franka_hybrid_control',
         executable='force_position_node',
-        name='force_position_interface',
+        name='force_position_node',
         output='screen',
         parameters=[
-            os.path.join(pkg_dir, 'config', 'force_control_params.yaml'),
-            {'force_axis': force_axis_value},  # Pass force_axis launch arg as a parameter
-            {'force_target': force_target_value} # Pass force_target launch arg as a parameter
-            # Note: force_kp, force_ki, force_kd should be in force_control_params.yaml
-            # If FrankaHybridController is a separate Node, it needs its params loaded elsewhere
+            robot_description,
+            robot_description_semantic,
+            kinematics_yaml,
+            force_params_yaml,
         ],
-        # Add remappings if necessary for your node to find topics/services under namespaces
-        # remappings=[
-        #     ('/tf', '/tf'), # Example remapping if needed
-        # ]
     )
 
-    # Removed the incorrect 'std_msgs' publisher nodes
-
-    # Return the LaunchDescription with the included launch file FIRST
-    # and then your custom node
-    return [
-        franka_moveit_launch, # Include this action BEFORE your node
-        force_position_node,
-        # The parameters for force_axis and force_target are now part of the force_position_node definition
-    ]
-
-
-def generate_launch_description():
-    # Declare the launch arguments at the top level
-    robot_ip_arg = DeclareLaunchArgument(
-        'robot_ip',
-        description='IP address of the robot'
+    # Your custom publisher node (use entry point name, not filename)
+    custom_publisher_node = Node(
+        package='franka_hybrid_control',
+        executable='custom_publisher',
+        name='custom_publisher',
+        output='screen',
     )
 
-    force_axis_arg = DeclareLaunchArgument(
-        'force_axis',
-        default_value='2',  # Default to Z-axis (index 2)
-        description='Axis index to control with force (0=X, 1=Y, 2=Z)'
-    )
-
-    force_target_arg = DeclareLaunchArgument(
-        'force_target',
-        default_value='5.0',  # Default 5N force in Newtons
-        description='Target force in Newtons for the specified axis'
-    )
-
-    # Use OpaqueFunction to run the launch_setup logic, which finds and includes the MoveIt launch file
-    # This allows handling potential errors during the setup phase.
     return LaunchDescription([
-        robot_ip_arg, # Include the argument definitions
-        force_axis_arg,
-        force_target_arg,
-        OpaqueFunction(function=launch_setup), # This function returns the list of actions (included launch + your node)
-    ])
+        DeclareLaunchArgument('robot_ip', description='Robot IP address'),
+        DeclareLaunchArgument('use_fake_hardware', default_value='false', description='Use fake hardware'),
+        DeclareLaunchArgument('fake_sensor_commands', default_value='false', description='Fake sensor commands'),
+
+        robot_state_publisher,
+        ros2_control_node,
+        move_group_node,
+        rviz_node,
+        force_position_node,
+        custom_publisher_node,
+    ] + load_controllers)

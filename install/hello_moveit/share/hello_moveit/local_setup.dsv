@@ -1,1 +1,2 @@
-/home/lampa66/ws_moveita/build/hello_moveit/ament_cmake_environment_hooks/local_setup.dsv
+source;share/hello_moveit/environment/ament_prefix_path.sh
+source;share/hello_moveit/environment/path.sh
