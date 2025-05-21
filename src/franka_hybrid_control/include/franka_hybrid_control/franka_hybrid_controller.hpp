@@ -12,6 +12,7 @@
 #include <moveit/move_group_interface/move_group_interface.h>
 #include <tf2_ros/transform_listener.h>
 #include <tf2_geometry_msgs/tf2_geometry_msgs.hpp>
+#include <control_msgs/msg/joint_trajectory_controller_state.hpp>
 
 namespace franka_hybrid_control
 {
@@ -46,6 +47,7 @@ private:
   // Callbacks
   void franka_state_callback(const franka_msgs::msg::FrankaRobotState::SharedPtr msg);
   void joint_state_callback(const sensor_msgs::msg::JointState::SharedPtr msg);
+  void arm_controller_state_callback(const control_msgs::msg::JointTrajectoryControllerState::SharedPtr msg);
   
   // Control methods
   void control_loop();
@@ -58,6 +60,7 @@ private:
   // Subscribers
   rclcpp::Subscription<franka_msgs::msg::FrankaRobotState>::SharedPtr franka_state_sub_;
   rclcpp::Subscription<sensor_msgs::msg::JointState>::SharedPtr joint_state_sub_;
+  rclcpp::Subscription<control_msgs::msg::JointTrajectoryControllerState>::SharedPtr arm_controller_state_sub_;
   
   // Publishers
   rclcpp::Publisher<geometry_msgs::msg::TwistStamped>::SharedPtr velocity_pub_;
@@ -75,6 +78,7 @@ private:
   // Current state
   franka_msgs::msg::FrankaRobotState::SharedPtr current_franka_state_;
   sensor_msgs::msg::JointState::SharedPtr current_joint_state_;
+  control_msgs::msg::JointTrajectoryControllerState::SharedPtr current_arm_controller_state_;
   geometry_msgs::msg::PoseStamped target_pose_;
   geometry_msgs::msg::PoseStamped current_pose_;
   std::array<double, 6> current_wrench_;

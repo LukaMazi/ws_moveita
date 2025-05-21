@@ -1,7 +1,7 @@
 import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, ExecuteProcess, Shutdown
+from launch.actions import DeclareLaunchArgument
 from launch.substitutions import Command, FindExecutable, LaunchConfiguration
 from launch_ros.actions import Node
 from launch_ros.parameter_descriptions import ParameterValue
@@ -92,35 +92,17 @@ def generate_launch_description():
     }
 
     # Nodes
-    robot_state_publisher = Node(
-        package='robot_state_publisher',
-        executable='robot_state_publisher',
-        name='robot_state_publisher',
-        output='screen',
-        parameters=[robot_description],
-    )
 
-    ros2_control_node = Node(
-        package='controller_manager',
-        executable='ros2_control_node',
-        parameters=[robot_description, controllers_yaml_path],
-        output='screen',
-        emulate_tty=True,
-        on_exit=Shutdown(),
-    )
+    #ker imam ze v prvem launchu nerabim se tukaj
 
-    # Spawners for controllers (use ExecuteProcess for reliability)
-    load_controllers = []
-    for controller in ['fr3_arm_controller', 'joint_state_broadcaster']:
-        load_controllers += [
-            ExecuteProcess(
-                cmd=['ros2 run controller_manager spawner {}'.format(controller)],
-                shell=True,
-                output='screen',
-            )
-        ]
+    # robot_state_publisher = Node(
+    #     package='robot_state_publisher',
+    #     executable='robot_state_publisher',
+    #     name='robot_state_publisher',
+    #     output='screen',
+    #     parameters=[robot_description],
+    # )
 
-    # MoveIt move_group node
     move_group_node = Node(
         package='moveit_ros_move_group',
         executable='move_group',
@@ -136,7 +118,6 @@ def generate_launch_description():
         ],
     )
 
-    # RViz
     rviz_node = Node(
         package='rviz2',
         executable='rviz2',
@@ -151,7 +132,6 @@ def generate_launch_description():
         ],
     )
 
-    # Your custom force position node
     force_position_node = Node(
         package='franka_hybrid_control',
         executable='force_position_node',
@@ -165,7 +145,6 @@ def generate_launch_description():
         ],
     )
 
-    # Your custom publisher node (use entry point name, not filename)
     custom_publisher_node = Node(
         package='franka_hybrid_control',
         executable='custom_publisher',
@@ -178,10 +157,9 @@ def generate_launch_description():
         DeclareLaunchArgument('use_fake_hardware', default_value='false', description='Use fake hardware'),
         DeclareLaunchArgument('fake_sensor_commands', default_value='false', description='Fake sensor commands'),
 
-        robot_state_publisher,
-        ros2_control_node,
+        #robot_state_publisher,
         move_group_node,
         rviz_node,
         force_position_node,
         custom_publisher_node,
-    ] + load_controllers)
+    ])

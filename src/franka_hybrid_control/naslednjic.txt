@@ -1,0 +1,19 @@
+oki doki poki poglej cluada . rabim popravit robot state publisher od sourca alpa nardit file da razvrsti pravilno sklepe.
+
+➜  robot_state_publisher pwd
+/opt/ros/humble/share/robot_state_publisher
+
+➜  franka_robot_state_broadcaster git:(humble) ✗ pwd
+/home/lampa66/fr3_ws/src/franka_ros2/franka_robot_state_broadcaster
+➜  franka_robot_state_broadcaster git:(humble) ✗ 
+
+ neki od tega not je napaka 
+
+ pa tudi ko se odpre rviz se robota ne da nadzirat s tem novim kontrolerjem ki je FrankaStateController
+ prej z fr3_arm_controller se je dalo premikat, ampak sem ga dau stran od launch fila, ker za hybrid control je potreben talele zgornji
+
+
+
+dej poglej kje se to nahaja ros2 launch franka_bringup franka.launch.py robot_ip:=192.168.1.11 gripper:=no arm_id:=fr3
+
+kaj je ta datoteka iz tle neki izhaja problem izsledi tok inforamciji

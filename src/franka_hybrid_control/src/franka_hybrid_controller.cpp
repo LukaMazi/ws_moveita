@@ -51,7 +51,7 @@ FrankaHybridController::FrankaHybridController()
 }
 
 void FrankaHybridController::franka_state_callback(const franka_msgs::msg::FrankaRobotState::SharedPtr msg)
-{
+{ 
   current_franka_state_ = msg;
   
   // Extract external force from robot state

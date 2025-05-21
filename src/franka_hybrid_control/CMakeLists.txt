@@ -18,6 +18,7 @@ find_package(tf2_ros REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
 find_package(pluginlib REQUIRED)
 find_package(std_msgs REQUIRED)
+find_package(control_msgs REQUIRED)
 
 # Include headers
 include_directories(
@@ -47,6 +48,7 @@ ament_target_dependencies(franka_hybrid_controller
   tf2_geometry_msgs
   pluginlib
   std_msgs
+  control_msgs
 )
 
 # Declare a C++ executable
@@ -66,6 +68,7 @@ ament_target_dependencies(force_position_node
   tf2_ros
   tf2_geometry_msgs
   std_msgs
+  control_msgs
 )
 
 target_link_libraries(force_position_node
@@ -118,6 +121,7 @@ ament_export_dependencies(
   tf2_geometry_msgs
   pluginlib
   std_msgs
+  control_msgs
 )
 
 ament_package()
