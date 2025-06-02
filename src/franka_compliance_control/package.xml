@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>franka_compliance_control</name>
+  <version>0.0.1</version>
+  <description>Hybrid force-position control for Franka FR3 using CartesianComplianceController from FZI.</description>
+  <maintainer email="luka.lukec92@gmail.com">lampa66</maintainer>
+  <license>Apache License 2.0</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <depend>rclcpp</depend>
+  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>sensor_msgs</depend> <depend>controller_manager</depend>
+  <depend>joint_state_broadcaster</depend>
+  <depend>franka_robot_state_broadcaster</depend> <depend>franka_msgs</depend>    <depend>franka_hardware</depend>  <depend>franka_description</depend> <depend>cartesian_compliance_controller</depend> <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

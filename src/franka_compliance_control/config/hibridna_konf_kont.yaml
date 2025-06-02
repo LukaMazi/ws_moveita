@@ -1,0 +1,62 @@
+# config/hybrid_force_position_controller.yaml
+
+controller_manager:
+  ros__parameters:
+    update_rate: 1000  # Hz
+    
+    # Vaš hibridni kontroler
+    cartesian_compliance_controller:
+      type: cartesian_compliance_controller/CartesianComplianceController
+      
+    # Ostali potrebni kontrolerji
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+      
+    franka_robot_state_broadcaster:
+      type: franka_robot_state_broadcaster/FrankaRobotStateBroadcaster
+
+# Hibridni kontroler konfiguracija
+cartesian_compliance_controller:
+  ros__parameters:
+    # Robot chain
+    robot_base_link: "fr3_link0"
+    end_effector_link: "fr3_hand_tcp"
+    compliance_ref_link: "fr3_hand_tcp"
+    
+    # Stiffness - ključno za hibridni nadzor!
+    # Visoka vrednost = pozicijska kontrola
+    # Nizka vrednost = sila/komplijansa kontrola
+    stiffness:
+      trans_x: 1500.0  # [N/m] - pozicijska kontrola X
+      trans_y: 1500.0  # [N/m] - pozicijska kontrola Y  
+      trans_z: 10.0    # [N/m] - sila kontrola Z (nizka stiffness!)
+      rot_x: 300.0     # [Nm/rad]
+      rot_y: 300.0     # [Nm/rad]
+      rot_z: 300.0     # [Nm/rad]
+    
+    # Solver nastavitve
+    solver:
+      error_scale: 1.0
+      iterations: 1
+      publish_state_feedback: true
+      
+    # Filtriranje
+    damping_factor: 0.005
+    nullspace_stiffness: 0.5
+    
+    # Joints
+    joints:
+      - fr3_joint1
+      - fr3_joint2
+      - fr3_joint3
+      - fr3_joint4
+      - fr3_joint5
+      - fr3_joint6
+      - fr3_joint7
+      
+    # Interface types
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity

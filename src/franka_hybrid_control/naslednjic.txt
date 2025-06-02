@@ -17,3 +17,113 @@ oki doki poki poglej cluada . rabim popravit robot state publisher od sourca alp
 dej poglej kje se to nahaja ros2 launch franka_bringup franka.launch.py robot_ip:=192.168.1.11 gripper:=no arm_id:=fr3
 
 kaj je ta datoteka iz tle neki izhaja problem izsledi tok inforamciji
+
+
+controller_manager:
+  ros__parameters:
+    update_rate: 1000  # Hz
+
+    fr3_arm_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+      command_interfaces:
+        - effort
+      state_interfaces:
+        - position
+        - velocity
+      joints:
+        - fr3_joint1
+        - fr3_joint2
+        - fr3_joint3
+        - fr3_joint4
+        - fr3_joint5
+        - fr3_joint6
+        - fr3_joint7
+      gains:
+        fr3_joint1: { p: 600., d: 30., i: 0., i_clamp: 1. }
+        fr3_joint2: { p: 600., d: 30., i: 0., i_clamp: 1. }
+        fr3_joint3: { p: 600., d: 30., i: 0., i_clamp: 1. }
+        fr3_joint4: { p: 600., d: 30., i: 0., i_clamp: 1. }
+        fr3_joint5: { p: 250., d: 10., i: 0., i_clamp: 1. }
+        fr3_joint6: { p: 150., d: 10., i: 0., i_clamp: 1. }
+        fr3_joint7: { p: 50., d: 5., i: 0., i_clamp: 1. }
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    franka_robot_state_broadcaster:
+      type: franka_robot_state_broadcaster/FrankaRobotStateBroadcaster
+      arm_id: fr3
+
+
+#to zgoraj ne dela niti za moveit.launch
+#ce dam to spodaj pol dela
+
+# controller_manager:
+#   ros__parameters:
+#     update_rate: 1000  # Hz
+
+#     fr3_arm_controller:
+#       type: joint_trajectory_controller/JointTrajectoryController
+
+#     joint_state_broadcaster:
+#       type: joint_state_broadcaster/JointStateBroadcaster
+
+#     franka_robot_state_broadcaster:
+#       type: franka_robot_state_broadcaster/FrankaRobotStateBroadcaster
+
+# franka_robot_state_broadcaster:
+#   ros__parameters:
+#     arm_id: fr3
+
+# fr3_arm_controller:
+#   ros__parameters:
+#     command_interfaces:
+#       - effort
+#     state_interfaces:
+#       - position
+#       - velocity
+#     joints:
+#       - fr3_joint1
+#       - fr3_joint2
+#       - fr3_joint3
+#       - fr3_joint4
+#       - fr3_joint5
+#       - fr3_joint6
+#       - fr3_joint7
+#     gains:
+#       fr3_joint1: { p: 600., d: 30., i: 0., i_clamp: 1. }
+#       fr3_joint2: { p: 600., d: 30., i: 0., i_clamp: 1. }
+#       fr3_joint3: { p: 600., d: 30., i: 0., i_clamp: 1. }
+#       fr3_joint4: { p: 600., d: 30., i: 0., i_clamp: 1. }
+#       fr3_joint5: { p: 250., d: 10., i: 0., i_clamp: 1. }
+#       fr3_joint6: { p: 150., d: 10., i: 0., i_clamp: 1. }
+#       fr3_joint7: { p: 50., d: 5., i: 0., i_clamp: 1. }
+
+
+
+to je z orginialnim fr3 ros controllers iz githuba original in so tri kontrolerji prisotni. zakaj mi pri moje filu noce dat se fr3 arm controller ?
+
+➜  fr3_ws ros2 control list_controllers
+joint_state_broadcaster        joint_state_broadcaster/JointStateBroadcaster               active
+franka_robot_state_broadcaster franka_robot_state_broadcaster/FrankaRobotStateBroadcaster  active
+➜  fr3_ws ros2 launch franka_bringup myfranka.launch.py robot_ip:=192.168.1.11 arm_id:=fr3
+Package 'franka_bringup' not found: "package 'franka_bringup' not found, searching: ['/opt/ros/humble']"
+➜  fr3_ws ros2 control list_controllers
+franka_robot_state_broadcaster franka_robot_state_broadcaster/FrankaRobotStateBroadcaster  active
+joint_state_broadcaster        joint_state_broadcaster/JointStateBroadcaster               active
+fr3_arm_controller             joint_trajectory_controller/JointTrajectoryController       active
+➜  fr3_ws 
+
+
+poglej kaj je razlika ko launcham samo moveit.launch in so tri kontrolerji prisotni 
+al pa ko dam myfranka in hybrid pol se ta tretji ne prizge in nemorem premikat robota
+
+inpol se ta error pri hybridu : [force_position_node-3] [ERROR] [1747836604.215738548] [force_position_node]: Timed out waiting for robot state
+[force_position_node-3] [ERROR] [1747836604.215751586] [force_position_node]: Failed to initialize connection to robot
+[force_position_node-3] [ERROR] [1747836604.215755309] [force_position_node]: Failed to execute hybrid control. Force axis: 2, Target force: 2.00 N, Pose frame_id: fr3_link0
+
+drgac franka brinhup ima nek svoj kontroler not 
+
+
+
+naredi nobvo yaml daodteko configure 2 in samo za driverje ne za moveit. idk ta fr3arm controller

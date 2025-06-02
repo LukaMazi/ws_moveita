@@ -23,6 +23,7 @@ function _colcon_prefix_chain_powershell_source_script {
 
 # source chained prefixes
 _colcon_prefix_chain_powershell_source_script "/opt/ros/humble\local_setup.ps1"
+_colcon_prefix_chain_powershell_source_script "/home/lampa66/install\local_setup.ps1"
 _colcon_prefix_chain_powershell_source_script "/home/lampa66/ws_moveit/install\local_setup.ps1"
 _colcon_prefix_chain_powershell_source_script "/home/lampa66/fr3_ws/install\local_setup.ps1"
 _colcon_prefix_chain_powershell_source_script "/home/lampa66/libfranka/install\local_setup.ps1"

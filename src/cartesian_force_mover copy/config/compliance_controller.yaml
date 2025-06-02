@@ -1,0 +1,12 @@
+cartesian_compliance_controller:
+  ros__parameters:
+    type: "cartesian_compliance_controller/CartesianComplianceController"
+    end_effector_link: "tool0"
+    robot_base_link: "base_link"
+    compliance_ref_link: "tool0"
+    stiffness.trans_x: 1500.0
+    stiffness.trans_y: 1500.0
+    stiffness.trans_z: 10.0
+    stiffness.rot_x: 300.0
+    stiffness.rot_y: 300.0
+    stiffness.rot_z: 300.0
